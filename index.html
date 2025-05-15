@@ -815,38 +815,52 @@
 
         /* Footer */
         footer {
-            background-color: var(--dark-bg);
-            color: var(--light-text);
-            padding: 64px 0 24px;
+            background-color: var(--dark-bg); /* Dark background for footer */
+            color: var(--light-text); /* Light text color */
+            padding: 80px 0 40px; /* Increased padding */
+            border-top: 1px solid var(--border-color-dark); /* Add a subtle border top */
         }
+
+        body:not(.dark-theme) footer {
+            background-color: var(--dark-surface); /* Slightly lighter dark background in light mode */
+            color: var(--light-text);
+            border-top-color: var(--border-color-light); /* Light border color in light mode */
+        }
+
 
         .footer-content {
             display: flex;
             flex-wrap: wrap;
-            gap: 48px;
-            margin-bottom: 64px;
+            gap: 40px; /* Adjusted gap */
+            margin-bottom: 40px; /* Adjusted margin */
             justify-content: space-between;
         }
 
         .footer-col {
             flex: 1;
-            min-width: 200px;
+            min-width: 220px; /* Slightly increased min-width */
         }
 
         .footer-col h3 {
-            font-size: 1.2rem;
-            margin-bottom: 24px;
+            font-size: 1.3rem; /* Slightly increased font size */
+            margin-bottom: 20px; /* Adjusted margin */
             position: relative;
-            padding-bottom: 12px;
+            padding-bottom: 10px; /* Adjusted padding */
+            color: var(--heading-text-dark); /* Heading color for dark background */
         }
+
+         body:not(.dark-theme) .footer-col h3 {
+             color: var(--heading-text-dark); /* Keep dark heading color in light mode footer */
+         }
+
 
         .footer-col h3::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 40px;
-            height: 3px;
+            width: 50px; /* Increased width */
+            height: 4px; /* Increased height */
             background: linear-gradient(to right, var(--primary), var(--secondary));
             border-radius: 2px;
         }
@@ -858,45 +872,66 @@
         }
 
         .footer-links li {
-            margin-bottom: 12px;
+            margin-bottom: 10px; /* Adjusted margin */
         }
 
         .footer-links a {
             text-decoration: none;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8); /* Slightly increased opacity */
             transition: var(--transition);
+            display: inline-block; /* Allow padding/margin */
+            padding: 4px 0; /* Added padding for hover effect */
         }
 
+        body:not(.dark-theme) .footer-links a {
+            color: rgba(255, 255, 255, 0.8); /* Keep same link color in light mode footer */
+        }
+
+
         .footer-links a:hover {
-            color: var(--light-text);
-            padding-left: 5px;
+            color: var(--secondary); /* Hover color */
+            padding-left: 8px; /* Increased padding on hover */
         }
 
         .footer-quote {
             font-style: italic;
-            margin-bottom: 24px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px; /* Adjusted margin */
+            line-height: 1.6; /* Adjusted line height */
+            color: rgba(255, 255, 255, 0.8); /* Slightly increased opacity */
         }
 
+        body:not(.dark-theme) .footer-quote {
+            color: rgba(255, 255, 255, 0.8); /* Keep same quote color in light mode footer */
+        }
+
+
         .footer-quote::before {
-            content: '"';
-            font-size: 24px;
+            content: '“'; /* Changed quote character */
+            font-size: 30px; /* Increased font size */
             color: var(--secondary);
+            margin-right: 5px; /* Added margin */
+            vertical-align: top; /* Align to top */
         }
 
         .footer-quote::after {
-            content: '"';
-            font-size: 24px;
+            content: '”'; /* Changed quote character */
+            font-size: 30px; /* Increased font size */
             color: var(--secondary);
+            margin-left: 5px; /* Added margin */
+            vertical-align: bottom; /* Align to bottom */
         }
 
         .footer-bottom {
-            padding-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px; /* Increased padding */
+            border-top: 1px solid rgba(255, 255, 255, 0.15); /* Slightly increased opacity */
             text-align: center;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem; /* Slightly increased font size */
+            color: rgba(255, 255, 255, 0.75); /* Slightly increased opacity */
+        }
+
+        body:not(.dark-theme) .footer-bottom {
+            border-top-color: rgba(255, 255, 255, 0.15); /* Keep same border color in light mode footer */
+            color: rgba(255, 255, 255, 0.75); /* Keep same text color in light mode footer */
         }
 
         .heart {
@@ -979,6 +1014,20 @@
 
             .header-content {
                 height: 70px;
+            }
+
+            .header-actions {
+                display: flex;
+                align-items: center;
+                gap: 10px; /* Adjust gap as needed */
+            }
+
+            .theme-toggle {
+                order: 1; /* Theme toggle appears first */
+            }
+
+            .mobile-menu-btn {
+                order: 2; /* Mobile menu button appears second */
             }
 
             .hero-title {
