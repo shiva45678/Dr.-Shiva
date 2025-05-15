@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Meet Dr. Shiva Kolli, MBBS, founder of Newton's AI. Discover how his AI platform is revolutionizing healthcare in India, empowering doctors and improving patient outcomes with intelligent systems for diagnosis, treatment, and hospital management.">
+    <title>Dr. Shiva Kolli, MBBS | Founder of Newton's AI | Revolutionizing Healthcare in India</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0E76FD; /* A vibrant blue */
+            --secondary: #05D3B9; /* A bright teal */
+            --dark-bg: #0A1929; /* Deep navy background */
+            --dark-surface: #132F4C; /* Slightly lighter navy for cards/surfaces */
+            --light-bg: #F8FAFC; /* Very light grey background */
+            --light-surface: #FFFFFF; /* White for cards/surfaces */
+            --dark-text: #1A202C; /* Dark grey for text in light mode */
+            --light-text: #E2E8F0; /* Light grey for text in dark mode */
+            --heading-text-light: #2D3748; /* Slightly darker text for headings in light mode */
+            --heading-text-dark: #F7FAFC; /* Very light text for headings in dark mode */
+            --border-color-light: #E2E8F0; /* Light border color */
+            --border-color-dark: #2D3748; /* Dark border color */
+            --transition: all 0.3s ease;
+            --section-spacing: 100px;
+            --card-shadow-light: 0 8px 20px rgba(0, 0, 0, 0.08);
+            --card-shadow-dark: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+            line-height: 1.7; /* Increased line height for better readability */
+            min-height: 100vh; /* Ensure body takes at least full viewport height */
+            font-size: 16px; /* Base font size */
+        }
+
+        body.dark-theme {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--heading-text-light);
+            line-height: 1.2;
+        }
+
+        body.dark-theme h1,
+        body.dark-theme h2,
+        body.dark-theme h3,
+        body.dark-theme h4,
+        body.dark-theme h5,
+        body.dark-theme h6 {
+            color: var(--heading-text-dark);
+        }
+
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body.dark-theme header {
+            background-color: rgba(10, 25, 41, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-dot {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 500;
+            position: relative;
+            padding: 8px 0;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+            font-size: 20px;
+            padding: 8px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: inherit;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        #hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--light-text);
+            overflow: hidden;
+            /* Added subtle background pattern */
+            background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 10px 10px;
+        }
+
+        body:not(.dark-theme) #hero {
+            background: radial-gradient(circle at top left, var(--light-bg) 0%, rgba(230, 230, 250, 0.5) 50%, transparent 100%),
+                        radial-gradient(circle at bottom right, rgba(255, 228, 196, 0.5) 0%, transparent 100%);
+            background-color: var(--light-bg); /* Fallback */
+            background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 10px 10px;
+        }
+
+        .hero-title,
+        .hero-subtitle,
+        .hero-tagline {
+            color: var(--dark-text);
+        }
+
+        body.dark-theme #hero .hero-title,
+        body.dark-theme #hero .hero-subtitle,
+        body.dark-theme #hero .hero-tagline {
+            color: var(--light-text);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 24px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+            color: var(--dark-text); /* Use dark-text variable for light mode */
+        }
+
+        body.dark-theme .hero-subtitle {
+             color: var(--light-text); /* Ensure light-text in dark mode */
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .hero-tagline {
+            font-size: 2rem;
+            margin-bottom: 32px;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px; /* Slightly adjusted padding */
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1rem; /* Slightly adjusted font size */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary); /* Primary button uses primary color */
+            color: var(--light-text);
+            border: 2px solid var(--primary);
+        }
+
+        body.dark-theme .btn-primary {
+            background-color: var(--primary);
+            color: var(--light-text);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary); /* Hover uses secondary color */
+            border-color: var(--secondary);
+            color: var(--dark-text); /* Text color changes on hover */
+        }
+
+        body.dark-theme .btn-primary:hover {
+             background-color: var(--secondary);
+             border-color: var(--secondary);
+             color: var(--dark-text);
+        }
+
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary); /* Secondary button uses primary color text */
+            border: 2px solid var(--primary); /* Secondary button uses primary color border */
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary); /* Hover uses primary color background */
+            color: var(--light-text); /* Text color changes on hover */
+            border-color: var(--primary);
+        }
+
+        body.dark-theme .btn-secondary {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        body.dark-theme .btn-secondary:hover {
+            background-color: var(--primary);
+            color: var(--light-text);
+            border-color: var(--primary);
+        }
+
+
+        /* Hero Decoration */
+        .hero-decoration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-decoration::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            top: -200px;
+            right: -200px;
+            animation: float 8s ease-in-out infinite alternate;
+        }
+
+        .hero-decoration::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+            bottom: -300px;
+            left: -300px;
+            animation: float 10s ease-in-out infinite alternate reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(20px, 20px); }
+        }
+
+        /* About Section */
+        #about {
+            padding: var(--section-spacing) 0;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--light-bg);
+            transition: background-color 0.3s ease;
+        }
+
+        body.dark-theme #about {
+            background-color: var(--dark-bg);
+        }
+
+        .section-heading {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        .section-subheading {
+            font-size: 1.3rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            opacity: 0.9;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .about-text {
+            flex: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-text p {
+            margin-bottom: 24px;
+            font-size: 1.15rem;
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 32px;
+            margin-top: 40px;
+            justify-content: center;
+        }
+
+        .stat-card {
+            flex: 1;
+            background-color: var(--light-surface);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--card-shadow-light); /* Use variable for shadow */
+            transition: var(--transition); /* Use variable for transition */
+            max-width: 300px;
+            border: 1px solid var(--border-color-light); /* Added border */
+        }
+
+        body.dark-theme .stat-card {
+            background-color: var(--dark-surface);
+            box-shadow: var(--card-shadow-dark); /* Use variable for shadow */
+            border-color: var(--border-color-dark); /* Added border */
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* Keep hover shadow for now */
+        }
+
+        body.dark-theme .stat-card:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Keep hover shadow for now */
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        /* AI Systems Section */
+        #ai-systems {
+            padding: var(--section-spacing) 0;
+            background-color: var(--light-surface);
+            transition: background-color 0.3s ease;
+        }
+
+        body.dark-theme #ai-systems {
+            background-color: var(--dark-surface);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .system-card {
+            background-color: var(--light-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow-light); /* Use variable for shadow */
+            transition: var(--transition); /* Use variable for transition */
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border-color-light); /* Added border */
+        }
+
+        body.dark-theme .system-card {
+            background-color: var(--dark-bg);
+            box-shadow: var(--card-shadow-dark); /* Use variable for shadow */
+            border-color: var(--border-color-dark); /* Added border */
+        }
+
+        .system-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* Keep hover shadow for now */
+        }
+
+        body.dark-theme .system-card:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Keep hover shadow for now */
+        }
+
+        .system-card-content {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .system-card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .system-card-desc {
+            opacity: 0.9;
+            margin-bottom: 24px;
+            font-size: 1rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .system-card-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: auto;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .system-card-link:hover {
+            text-decoration: underline;
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        /* Live AI Section */
+        #live-ai {
+            padding: var(--section-spacing) 0;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--light-bg);
+            transition: background-color 0.3s ease;
+        }
+
+        body.dark-theme #live-ai {
+            background-color: var(--dark-bg);
+        }
+
+        .live-ai-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(14, 118, 253, 0.08), rgba(5, 211, 185, 0.08));
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 48px;
+            margin-top: 60px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .feature-icon {
+            font-size: 28px;
+            color: var(--primary);
+            padding: 14px;
+            background-color: var(--light-surface);
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-theme .feature-icon {
+            background-color: var(--dark-surface);
+        }
+
+        .feature-item:hover .feature-icon {
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            background-color: var(--primary);
+            color: var(--light-text);
+        }
+
+        .feature-text h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .feature-text p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Testimonials */
+        #testimonials {
+            padding: var(--section-spacing) 0;
+            background-color: var(--light-surface);
+            transition: background-color 0.3s ease;
+        }
+
+        body.dark-theme #testimonials {
+            background-color: var(--dark-surface);
+        }
+
+        body.dark-theme #testimonials {
+            background-color: var(--dark-surface);
+        }
+
+        .testimonial-grid {
+            display: flex; /* Change from grid to flex */
+            overflow-x: auto; /* Add horizontal scrolling */
+            gap: 32px;
+            margin-top: 48px;
+            padding-bottom: 20px; /* Add padding for scrollbar */
+        }
+
+        .testimonial-grid::-webkit-scrollbar {
+            height: 8px; /* Height of horizontal scrollbar */
+        }
+
+        .testimonial-grid::-webkit-scrollbar-track {
+            background: var(--light-bg); /* Track color */
+            border-radius: 10px;
+        }
+
+        body.dark-theme .testimonial-grid::-webkit-scrollbar-track {
+             background: var(--dark-bg); /* Track color in dark mode */
+        }
+
+        .testimonial-grid::-webkit-scrollbar-thumb {
+            background: var(--primary); /* Thumb color */
+            border-radius: 10px;
+        }
+
+        .testimonial-grid::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary); /* Thumb color on hover */
+        }
+
+
+        .testimonial-card {
+            flex: 0 0 350px; /* Prevent shrinking and set base width */
+            background-color: var(--light-bg);
+            border-radius: 16px;
+            padding: 24px; /* Adjusted padding */
+            box-shadow: var(--card-shadow-light); /* Use variable for shadow */
+            transition: var(--transition); /* Use variable for transition */
+            position: relative;
+            white-space: normal; /* Allow text to wrap within the card */
+            border: 1px solid var(--border-color-light); /* Added border */
+        }
+
+        body.dark-theme .testimonial-card {
+            background-color: var(--dark-bg);
+            box-shadow: var(--card-shadow-dark); /* Use variable for shadow */
+            border-color: var(--border-color-dark); /* Added border */
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* Keep hover shadow for now */
+        }
+
+        .quote-icon {
+            position: absolute;
+            color: rgba(14, 118, 253, 0.2); /* Increased opacity */
+            top: 16px; /* Adjusted position */
+            right: 16px; /* Adjusted position */
+            font-size: 40px; /* Slightly reduced size */
+            color: rgba(14, 118, 253, 0.1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .testimonial-person {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .testimonial-info h4 {
+            margin: 0 0 4px 0;
+            font-weight: 600;
+        }
+
+        .testimonial-info p {
+            margin: 0;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: var(--section-spacing) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 48px;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .contact-icon {
+            font-size: 20px;
+            color: var(--primary);
+            background-color: var(--light-surface);
+            padding: 10px; /* Adjusted padding */
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark-theme .contact-icon {
+            background-color: var(--dark-surface);
+        }
+
+        .contact-text h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-text p, .contact-text a {
+            margin: 0;
+            opacity: 0.8;
+            font-size: 0.95rem;
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .contact-text a:hover {
+            color: var(--primary);
+            opacity: 1;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .contact-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px;
+            background-color: var(--light-surface);
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark-theme .contact-btn {
+            background-color: var(--dark-surface);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-btn-primary {
+            background-color: var(--primary);
+            color: var(--light-text);
+        }
+
+        .contact-btn-primary:hover {
+            background-color: var(--primary);
+            opacity: 0.9;
+            color: var(--light-text);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 64px 0 24px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 48px;
+            margin-bottom: 64px;
+            justify-content: space-between;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 24px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--light-text);
+            padding-left: 5px;
+        }
+
+        .footer-quote {
+            font-style: italic;
+            margin-bottom: 24px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-quote::before {
+            content: '"';
+            font-size: 24px;
+            color: var(--secondary);
+        }
+
+        .footer-quote::after {
+            content: '"';
+            font-size: 24px;
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .heart {
+            color: #ff3366;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 99;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background-color: var(--secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animated {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+
+            .contact-content {
+                flex-direction: column;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .section-heading {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-desktop {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .header-content {
+                height: 70px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.5rem; /* Adjusted for mobile */
+            }
+
+            .hero-tagline {
+                font-size: 1.8rem; /* Adjusted for mobile */
+            }
+
+            .stats-row {
+                flex-direction: column;
+                gap: 24px; /* Adjusted gap for mobile stats */
+            }
+
+            .stat-card {
+                max-width: 100%; /* Allow stat cards to take full width on mobile */
+            }
+
+            .testimonial-grid {
+                /* Reverted to flex for horizontal scroll, adjusted gap */
+                display: flex;
+                overflow-x: auto;
+                gap: 20px;
+                padding-bottom: 20px;
+            }
+
+            .testimonial-card {
+                 /* Ensure cards have a defined width for horizontal scroll */
+                flex: 0 0 300px;
+                padding: 20px;
+            }
+
+
+            .footer-content {
+                flex-direction: column;
+                gap: 32px;
+            }
+
+            .btn-row {
+                flex-direction: column;
+                gap: 16px; /* Adjusted gap for mobile buttons */
+            }
+
+            .btn {
+                width: 100%; /* Make buttons full width on mobile */
+                padding: 12px 24px; /* Adjusted padding for better touch target */
+                font-size: 1rem;
+            }
+
+            .section-spacing {
+                --section-spacing: 60px; /* Reduce section spacing on mobile */
+            }
+
+            .section-heading {
+                font-size: 2rem;
+            }
+
+            .section-subheading {
+                font-size: 1.1rem;
+                margin-bottom: 40px;
+            }
+
+            .about-content {
+                gap: 40px;
+            }
+
+            .about-text p {
+                font-size: 1rem;
+            }
+
+            .card-grid {
+                gap: 30px;
+            }
+
+            .system-card-content {
+                padding: 20px; /* Adjusted padding */
+            }
+
+            .system-card-title {
+                font-size: 1.2rem; /* Adjusted font size */
+            }
+
+            .system-card-desc {
+                font-size: 0.95rem; /* Adjusted font size */
+            }
+
+
+            .features-grid {
+                gap: 30px;
+            }
+
+            .feature-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .feature-icon {
+                margin-bottom: 10px;
+            }
+
+
+            .contact-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 8px;
+            }
+
+            .contact-icon {
+                margin-bottom: 8px;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .contact-btn {
+                width: 100%;
+                padding: 14px; /* Adjusted padding */
+            }
+
+            .footer-col {
+                min-width: auto;
+            }
+
+            .footer-content {
+                padding: 0 24px; /* Added padding to footer content */
+            }
+
+            .footer-bottom {
+                padding: 20px 24px 0; /* Added padding to footer bottom */
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--light-surface);
+            z-index: 200;
+            padding: 24px;
+            transition: right 0.3s ease;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+            display: flex; /* Use flexbox for centering content */
+            flex-direction: column;
+        }
+
+        body.dark-theme .mobile-nav {
+            background-color: var(--dark-surface);
+        }
+
+        .mobile-nav.open {
+            right: 0;
+        }
+
+        .mobile-nav-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: none;
+            border: none;
+            color: inherit;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 48px 0 0;
+            flex-grow: 1; /* Allow ul to take available space */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center list items vertically */
+        }
+
+        .mobile-nav li {
+            margin-bottom: 16px;
+        }
+
+        .mobile-nav a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 500;
+            font-size: 1.2rem;
+            display: block;
+            padding: 12px 0; /* Increased padding for better touch targets */
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 199;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Dr. Shiva</a>
+                <nav class="nav-desktop">
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#ai-systems">AI Systems</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <button class="mobile-menu-btn" aria-label="Open menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-nav">
+        <button class="mobile-nav-close" aria-label="Close menu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <ul>
+            <li><a href="#hero" class="mobile-nav-link">Home</a></li>
+            <li><a href="#about" class="mobile-nav-link">About</a></li>
+            <li><a href="#ai-systems" class="mobile-nav-link">AI Systems</a></li>
+            <li><a href="#testimonials" class="mobile-nav-link">Testimonials</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+        </ul>
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-decoration"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Dr. Shiva Kolli</h1>
+                <p class="hero-subtitle">MBBS | Founder of Newton's AI</p>
+                <p class="hero-tagline">Revolutionizing Healthcare in India</p>
+                <div class="btn-row">
+                    <a href="https://newtons.in" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-brain"></i> Newtons Ai
+                    </a>
+                    <a href="https://hms.newtons.in" target="_blank" class="btn btn-secondary">
+                        <i class="fa-solid fa-hospital"></i> Ai hospital management system
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fa-solid fa-envelope"></i> Contact Me
+                    </a>
+                    <a href="https://neetpg.newtons.in" target="_blank" class="btn btn-secondary">
+                        <i class="fa-solid fa-graduation-cap"></i> Newtons Neetpg
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-heading animated">About Dr. Shiva</h2>
+            <p class="section-subheading animated">Meet the visionary who is transforming healthcare through artificial intelligence</p>
+            
+            <div class="about-content animated">
+                <div class="about-text">
+                    <p>I'm Dr. Shiva, a medical doctor (MBBS) and the founder of Newton's AI – an AI platform transforming how doctors diagnose, treat, and manage patients. After experiencing the challenges of real-world clinical practice, I built Newton's AI to empower doctors and hospitals using intelligent systems.</p>
+                    <p>By combining my medical expertise with cutting-edge artificial intelligence, I'm creating tools that enhance clinical decision-making, reduce administrative burden, and improve patient outcomes.</p>
+                    <div class="stats-row">
+                        <div class="stat-card">
+                            <div class="stat-number">10000+</div>
+                            <div class="stat-label">Doctors Empowered</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Hospitals Connected</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Diagnostic Accuracy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Systems Section -->
+    <section id="ai-systems">
+        <div class="container">
+            <h2 class="section-heading animated">Explore Our AI Systems</h2>
+            <p class="section-subheading animated">Intelligent solutions designed to revolutionize healthcare delivery</p>
+            
+            <div class="card-grid">
+                <div class="system-card animated">
+                    <div class="system-card-content">
+                        <h3 class="system-card-title">AI OPD Assistant</h3>
+                        <p class="system-card-desc">Streamline outpatient department workflows with intelligent patient management.</p>
+                        <a href="https://newtons.in" class="system-card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="system-card animated">
+                    <div class="system-card-content">
+                        <h3 class="system-card-title">AI HMS System</h3>
+                        <p class="system-card-desc">Comprehensive Hospital Management System powered by AI for efficient operations.</p>
+                        <a href="https://hms.newtons.in" class="system-card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="system-card animated">
+                    <div class="system-card-content">
+                        <h3 class="system-card-title">AI-Integrated Wards</h3>
+                        <p class="system-card-desc">Intelligent patient monitoring systems for hospital wards with real-time data analytics.</p>
+                        <a href="https://group.newtons.in" class="system-card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="system-card animated">
+                    <div class="system-card-content">
+                        <h3 class="system-card-title">AI ICU Assistant</h3>
+                        <p class="system-card-desc">Intelligent assistance for critical care units, improving patient monitoring and response times.</p>
+                        <a href="https://newtons.in" class="system-card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="system-card animated">
+                    <div class="system-card-content">
+                        <h3 class="system-card-title">Emergency AI</h3>
+                        <p class="system-card-desc">Rapid and accurate AI support for emergency medical situations.</p>
+                        <a href="https://newtons.in" class="system-card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="system-card animated">
+                    <div class="system-card-content">
+                        <h3 class="system-card-title">Treatment Planner</h3>
+                        <p class="system-card-desc">AI-driven tool to assist doctors in creating personalized treatment plans.</p>
+                        <a href="https://newtons.in" class="system-card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+        <div class="container">
+            <h2 class="section-heading animated">What Our Users Say</h2>
+            <p class="section-subheading animated">Hear from patients and doctors who have experienced the benefits of this AI platform</p>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card animated">
+                    <div class="quote-icon"><i class="fa-solid fa-quote-right"></i></div>
+                    <div class="testimonial-text">
+                        "Newton's AI helped my doctor quickly identify the best treatment plan for my condition. I felt more confident and informed throughout my healthcare journey."
+                    </div>
+                    <div class="testimonial-person">
+                        <div class="testimonial-info">
+                            <h4>A. Sharma</h4>
+                            <p>Patient</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card animated">
+                    <div class="quote-icon"><i class="fa-solid fa-quote-right"></i></div>
+                    <div class="testimonial-text">
+                        "As a resident doctor, time is critical. Newton's AI assists me in quickly accessing relevant patient data and potential diagnoses, allowing me to focus more on patient care."
+                    </div>
+                    <div class="testimonial-person">
+                        <div class="testimonial-info">
+                            <h4>Dr. R. Gupta</h4>
+                            <p>Resident Doctor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-heading animated">Get in Touch</h2>
+            <p class="section-subheading animated">Have questions or want to learn more? Contact us today.</p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item animated">
+                        <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="contact-text">
+                            <h3>Address</h3>
+                            <p>Opposite to Post Office, Nandigama 521185</p>
+                        </div>
+                    </div>
+                    <div class="contact-item animated">
+                        <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                        <div class="contact-text">
+                            <h3>Phone</h3>
+                            <p><a href="tel:+916363111328">+91 63631 11328</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item animated">
+                        <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="contact-text">
+                            <h3>Email</h3>
+                            <p><a href="mailto:shiva@newtons.in">shiva@newtons.in</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-buttons animated">
+                    <a href="https://maps.app.goo.gl/G1cFrrv6owys4QyM6" target="_blank" class="contact-btn btn-secondary">View on Maps</a>
+                    <a href="mailto:shiva@newtons.in" class="contact-btn contact-btn-primary">
+                        <i class="fa-solid fa-calendar-check"></i> Book Consultation
+                    </a>
+                    <a href="tel:+916363111328" class="contact-btn">
+                        <i class="fa-solid fa-handshake"></i> Partner
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Dr. Shiva</h3>
+                    <p class="footer-quote">“AI won’t replace doctors. But doctors who use AI will replace those who don’t.” – Dr. Shiva</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#ai-systems">AI Systems</a></li>
+                        <li><a href="#">For Doctors</a></li>
+                        <li><a href="#">For Patients</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://newtons.in" target="_blank"><i class="fa-solid fa-robot"></i> Dr. Shiva's Website</a></li>
+                        <li><a href="https://hms.newtons.in" target="_blank"><i class="fa-solid fa-hospital"></i> HMS System</a></li>
+                        <li><a href="https://group.newtons.in" target="_blank"><i class="fa-solid fa-users"></i> AI Wards</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Dr. Shiva. Made with <span class="heart"><i class="fa-solid fa-heart"></i></span> by Dr. Shiva Kolli, MBBS | Founder of Newton’s AI.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Dark mode toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            // Save preference to local storage
+            if (body.classList.contains('dark-theme')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Apply saved theme on load
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-theme');
+        }
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const mobileNavClose = document.querySelector('.mobile-nav-close');
+        const overlay = document.querySelector('.overlay');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.add('open');
+            overlay.classList.add('open');
+        });
+
+        mobileNavClose.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+            overlay.classList.remove('open');
+        });
+
+        overlay.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+            overlay.classList.remove('open');
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                overlay.classList.remove('open');
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll to top button visibility
+        const scrollTopButton = document.querySelector('.scroll-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopButton.classList.add('active');
+            } else {
+                scrollTopButton.classList.remove('active');
+            }
+        });
+
+        // Scroll to top functionality
+        scrollTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Intersection Observer for animations
+        const animatedElements = document.querySelectorAll('.animated');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fadeIn');
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+        animatedElements.forEach(element => {
+            observer.observe(element);
+        });
+
+    </script>
+</body>
+</html>
