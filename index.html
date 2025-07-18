@@ -671,15 +671,29 @@
             font-size: 0.95rem;
         }
 
+        /* Donate Section */
+        #donate {
+            padding: var(--section-spacing) 0;
+            background-color: var(--light-surface); /* Alternating color */
+            transition: background-color 0.3s ease;
+        }
+        body.dark-theme #donate {
+            background-color: var(--dark-surface);
+        }
+        .donate-button-wrapper {
+            text-align: center;
+            margin-top: 48px;
+        }
+
         /* Contact Section */
         #contact {
             padding: var(--section-spacing) 0;
             position: relative;
             overflow: hidden;
-            background-color: var(--light-surface);
+            background-color: var(--light-bg);
         }
         body.dark-theme #contact {
-            background-color: var(--dark-surface);
+            background-color: var(--dark-bg);
         }
 
         .contact-content {
@@ -701,7 +715,7 @@
         .contact-icon {
             font-size: 22px;
             color: var(--primary);
-            background-color: var(--light-bg);
+            background-color: var(--light-surface);
             padding: 14px;
             border-radius: var(--border-radius-lg);
             box-shadow: var(--shadow-xs);
@@ -1079,6 +1093,7 @@
                         <li><a href="#about">About</a></li>
                         <li><a href="#ai-systems">AI Systems</a></li>
                         <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#donate">Donate</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
@@ -1104,6 +1119,7 @@
             <li><a href="#about" class="mobile-nav-link">About</a></li>
             <li><a href="#ai-systems" class="mobile-nav-link">AI Systems</a></li>
             <li><a href="#testimonials" class="mobile-nav-link">Testimonials</a></li>
+            <li><a href="#donate" class="mobile-nav-link">Donate</a></li>
             <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
         </ul>
     </div>
@@ -1279,6 +1295,17 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donate Section -->
+    <section id="donate">
+        <div class="container">
+            <h2 class="section-heading animated">Support Our Mission</h2>
+            <p class="section-subheading animated">100% of the money will be used to develop advanced AI assistants for doctors, support the innovation in healthcare.</p>
+            <div class="donate-button-wrapper animated" style="animation-delay: 0.1s;">
+                <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_QucG47lZk68gE2" async> </script> </form>
             </div>
         </div>
     </section>
