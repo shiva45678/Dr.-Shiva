@@ -34,14 +34,19 @@
             /* UI Elements */
             --border: #E2E8F0;
             --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             --radius: 16px;
+
+            /* Animation Variables */
+            /* The "Butter Smooth" Curve */
+            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+            --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1); 
         }
 
         body.dark-theme {
             --bg-body: #020617;
             --bg-surface: #0F172A;
-            --bg-glass: rgba(15, 23, 42, 0.8);
+            --bg-glass: rgba(15, 23, 42, 0.85);
             --text-main: #F8FAFC;
             --text-muted: #94A3B8;
             --border: #1E293B;
@@ -49,18 +54,22 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+        html { 
+            scroll-behavior: smooth; 
+            -webkit-font-smoothing: antialiased; /* Critical for smooth text during animation */
+            -moz-osx-font-smoothing: grayscale;
+        }
         
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
             line-height: 1.6;
-            transition: 0.3s ease;
+            transition: background-color 0.5s var(--ease-out-expo), color 0.5s var(--ease-out-expo);
             overflow-x: hidden;
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.2s; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
         ul { list-style: none; }
         
         /* Typography */
@@ -71,81 +80,136 @@
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         
-        /* --- Buttons --- */
+        /* --- Buttons with Smooth Hover --- */
         .btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 12px 24px; border-radius: 12px; font-weight: 600; transition: 0.3s;
+            padding: 12px 24px; border-radius: 12px; font-weight: 600;
             cursor: pointer; border: none; font-size: 1rem;
+            
+            /* Smooth properties */
+            transform: translateY(0);
+            transition: transform 0.4s var(--ease-out-back), 
+                        background-color 0.3s ease, 
+                        box-shadow 0.4s ease;
+            will-change: transform;
         }
         .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25); }
-        .btn-primary:hover { transform: translateY(-2px); background: var(--primary-dark); }
+        .btn-primary:hover { transform: translateY(-3px); background: var(--primary-dark); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3); }
+        
         .btn-secondary { background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-main); }
-        .btn-secondary:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
+        .btn-secondary:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-3px); box-shadow: var(--shadow-card); }
 
         /* --- Header --- */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: var(--bg-glass); backdrop-filter: blur(12px);
+            background: var(--bg-glass); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
+            transition: padding 0.3s ease;
         }
         .header-content { display: flex; justify-content: space-between; align-items: center; height: 70px; }
         .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; }
         
         .nav-links { display: flex; gap: 32px; }
-        .nav-links a:hover { color: var(--primary); }
+        .nav-links a { position: relative; }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: var(--primary); transition: width 0.3s var(--ease-out-expo);
+        }
+        .nav-links a:hover::after { width: 100%; }
         
         .controls { display: flex; gap: 12px; align-items: center; }
-        .theme-btn, .menu-btn { background: none; border: none; font-size: 1.2rem; color: var(--text-main); cursor: pointer; padding: 8px; }
+        .theme-btn, .menu-btn { 
+            background: none; border: none; font-size: 1.2rem; color: var(--text-main); 
+            cursor: pointer; padding: 8px; border-radius: 50%;
+            transition: background 0.3s ease, transform 0.3s var(--ease-out-back);
+        }
+        .theme-btn:hover, .menu-btn:hover { background: rgba(0,0,0,0.05); transform: rotate(15deg); }
+        body.dark-theme .theme-btn:hover { background: rgba(255,255,255,0.1); }
         .menu-btn { display: none; }
+
+        /* --- Mobile Menu Smooth Animation --- */
+        .mobile-nav-container {
+            position: fixed; top: 71px; left: 0; width: 100%;
+            background: var(--bg-surface); border-bottom: 1px solid var(--border);
+            padding: 0; max-height: 0; overflow: hidden;
+            transition: max-height 0.5s var(--ease-out-expo), opacity 0.4s ease;
+            opacity: 0; z-index: 999;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .mobile-nav-container.active { max-height: 400px; opacity: 1; padding: 20px 0; }
+        .mobile-links { display: flex; flex-direction: column; gap: 16px; padding: 0 24px; }
+        .mobile-links a { font-size: 1.1rem; font-weight: 600; }
 
         /* --- Hero --- */
         #hero {
-            padding: 140px 0 80px; text-align: center;
-            background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 50%);
+            padding: 160px 0 100px; text-align: center;
+            background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 60%);
         }
         .hero-tag {
             display: inline-block; padding: 6px 16px; background: rgba(37, 99, 235, 0.1);
             color: var(--primary); border-radius: 50px; font-weight: 600; font-size: 0.9rem; margin-bottom: 24px;
+            border: 1px solid rgba(37, 99, 235, 0.2);
         }
         .hero-btns { display: flex; gap: 16px; justify-content: center; margin-top: 32px; flex-wrap: wrap; }
 
-        /* --- About & Stats --- */
-        .section-center { text-align: center; margin-bottom: 60px; }
-        
+        /* --- Stats Cards --- */
         .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 40px; }
         .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .stat-card {
             background: var(--bg-surface); padding: 24px; border-radius: var(--radius);
             border: 1px solid var(--border); text-align: center;
+            transition: transform 0.4s var(--ease-out-back), border-color 0.3s ease;
         }
+        .stat-card:hover { transform: translateY(-5px); border-color: var(--primary); }
         .stat-num { font-size: 2rem; font-weight: 800; color: var(--primary); display: block; }
-        .stat-label { font-size: 0.9rem; font-weight: 600; }
 
-        /* --- Features Grid --- */
+        /* --- Feature Cards (High Performance Animation) --- */
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .card {
             background: var(--bg-surface); padding: 32px; border-radius: var(--radius);
-            border: 1px solid var(--border); transition: 0.3s; display: flex; flex-direction: column;
+            border: 1px solid var(--border); 
+            display: flex; flex-direction: column;
+            
+            /* Anti-jank properties */
+            transform: translateZ(0); 
+            backface-visibility: hidden;
+            transition: transform 0.5s var(--ease-out-expo), 
+                        box-shadow 0.5s var(--ease-out-expo),
+                        border-color 0.3s ease;
         }
-        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: var(--primary); }
+        .card:hover { 
+            transform: translateY(-8px) scale(1.01); 
+            box-shadow: var(--shadow-hover); 
+            border-color: var(--primary); 
+        }
         .card-icon { 
             width: 48px; height: 48px; background: rgba(13, 148, 136, 0.1); color: var(--secondary);
             border-radius: 12px; display: grid; place-items: center; font-size: 1.2rem; margin-bottom: 20px;
+            transition: transform 0.5s var(--ease-out-back);
         }
+        .card:hover .card-icon { transform: scale(1.1) rotate(5deg); }
         .card h3 { margin-bottom: 12px; font-size: 1.25rem; }
         .card p { margin-bottom: 24px; flex-grow: 1; font-size: 0.95rem; }
-        .card-link { color: var(--primary); font-weight: 600; margin-top: auto; display: inline-flex; align-items: center; gap: 6px; }
+        .card-link { 
+            color: var(--primary); font-weight: 600; margin-top: auto; display: inline-flex; align-items: center; gap: 6px; 
+            transition: transform 0.3s var(--ease-out-back);
+        }
+        .card:hover .card-link { transform: translateX(5px); }
 
-        /* --- Testimonials (Scroll Snap) --- */
+        /* --- Testimonials --- */
         .scroll-row {
-            display: flex; gap: 24px; overflow-x: auto; padding-bottom: 30px;
+            display: flex; gap: 24px; overflow-x: auto; padding: 20px 5px 40px;
             scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
         }
         .review-card {
             min-width: 320px; max-width: 320px; background: var(--bg-surface);
             padding: 24px; border-radius: var(--radius); border: 1px solid var(--border);
             scroll-snap-align: start;
+            transition: transform 0.4s ease;
         }
+        .review-card:hover { transform: translateY(-3px); }
         .stars { color: var(--accent); font-size: 0.8rem; margin-bottom: 12px; display: block; }
 
         /* --- Contact --- */
@@ -153,17 +217,19 @@
             background: var(--bg-surface); border: 1px solid var(--border);
             border-radius: var(--radius); padding: 40px; text-align: center;
             max-width: 600px; margin: 0 auto;
+            transition: transform 0.4s var(--ease-out-back), box-shadow 0.4s ease;
         }
+        .contact-box:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
         .contact-details { display: flex; justify-content: center; gap: 30px; margin: 24px 0; flex-wrap: wrap; }
         .c-item { display: flex; align-items: center; gap: 8px; font-weight: 500; }
 
         /* --- Footer --- */
         footer { background: var(--bg-surface); padding: 60px 0 20px; border-top: 1px solid var(--border); margin-top: 100px; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-links a { color: var(--text-muted); display: block; margin-bottom: 10px; font-size: 0.9rem; }
-        .footer-links a:hover { color: var(--primary); padding-left: 5px; }
+        .footer-links a { color: var(--text-muted); display: block; margin-bottom: 10px; font-size: 0.9rem; transition: transform 0.3s ease, color 0.3s ease; }
+        .footer-links a:hover { color: var(--primary); transform: translateX(5px); }
         
-        /* Mobile */
+        /* Mobile Breakpoint */
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .menu-btn { display: block; }
@@ -173,9 +239,29 @@
             .contact-details { flex-direction: column; gap: 16px; }
         }
 
-        /* Utils */
-        .fade-in { opacity: 0; transform: translateY(20px); transition: 0.6s; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        /* --- BUTTER SMOOTH ENTRANCE ANIMATIONS --- */
+        .fade-in { 
+            opacity: 0; 
+            /* Start slightly down and scaled down for depth */
+            transform: translateY(40px) scale(0.96); 
+            
+            /* The key to smoothness: long duration, custom curve */
+            transition: opacity 1.0s var(--ease-out-expo), 
+                        transform 1.0s var(--ease-out-expo);
+            
+            /* Hint to browser to optimize */
+            will-change: opacity, transform;
+        }
+        
+        .fade-in.visible { 
+            opacity: 1; 
+            transform: translateY(0) scale(1); 
+        }
+
+        /* Delays for grouped items (Handled via JS for simplicity) */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
     </style>
 </head>
 <body>
@@ -194,10 +280,20 @@
             </nav>
             <div class="controls">
                 <button class="theme-btn" aria-label="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
-                <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+                <button class="menu-btn" aria-label="Toggle Menu"><i class="fa-solid fa-bars"></i></button>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Nav Container (Smooth dropdown) -->
+    <div class="mobile-nav-container">
+        <div class="mobile-links">
+            <a href="#about">About</a>
+            <a href="#ecosystem">Ecosystem</a>
+            <a href="#testimonials">Reviews</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
 
     <!-- Hero -->
     <section id="hero">
@@ -230,16 +326,16 @@
                         <strong>Newton's AI</strong> was built to solve these challenges. By combining medical precision with algorithmic speed, we are creating a future where every Indian doctor has an intelligent assistant, and every patient receives timely, accurate care.
                     </p>
                 </div>
-                <div class="stat-grid fade-in">
-                    <div class="stat-card">
+                <div class="stat-grid">
+                    <div class="stat-card fade-in delay-1">
                         <span class="stat-num">10k+</span>
                         <span class="stat-label">Doctors</span>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-card fade-in delay-2">
                         <span class="stat-num">500+</span>
                         <span class="stat-label">Hospitals</span>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-card fade-in delay-3">
                         <span class="stat-num">98%</span>
                         <span class="stat-label">Accuracy</span>
                     </div>
@@ -248,10 +344,10 @@
         </div>
     </section>
 
-    <!-- Ecosystem (Consolidated Links) -->
+    <!-- Ecosystem -->
     <section id="ecosystem" style="padding: 80px 0; background: var(--bg-surface);">
         <div class="container">
-            <div class="section-center fade-in">
+            <div class="section-center fade-in" style="text-align: center; margin-bottom: 60px;">
                 <h2>The Ecosystem</h2>
                 <p>A unified suite of intelligent tools designed for modern healthcare facilities.</p>
             </div>
@@ -266,7 +362,7 @@
                 </div>
                 
                 <!-- HMS -->
-                <div class="card fade-in">
+                <div class="card fade-in delay-1">
                     <div class="card-icon"><i class="fa-solid fa-hospital"></i></div>
                     <h3>Hospital Management</h3>
                     <p>Full-stack resource allocation, billing, and administration system.</p>
@@ -274,7 +370,7 @@
                 </div>
 
                 <!-- Wards -->
-                <div class="card fade-in">
+                <div class="card fade-in delay-2">
                     <div class="card-icon"><i class="fa-solid fa-bed-pulse"></i></div>
                     <h3>Smart Wards</h3>
                     <p>Real-time patient monitoring with predictive alerts for critical vitals.</p>
@@ -290,7 +386,7 @@
                 </div>
 
                 <!-- Emergency -->
-                <div class="card fade-in">
+                <div class="card fade-in delay-1">
                     <div class="card-icon"><i class="fa-solid fa-truck-medical"></i></div>
                     <h3>Emergency Triage</h3>
                     <p>Rapid severity assessment AI to prioritize critical cases instantly.</p>
@@ -298,7 +394,7 @@
                 </div>
 
                 <!-- Education -->
-                <div class="card fade-in">
+                <div class="card fade-in delay-2">
                     <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
                     <h3>NEETPG Prep</h3>
                     <p>AI-driven study plans and analytics for aspiring medical post-graduates.</p>
@@ -311,7 +407,7 @@
     <!-- Testimonials -->
     <section id="testimonials" style="padding: 80px 0;">
         <div class="container">
-            <div class="section-center fade-in">
+            <div class="section-center fade-in" style="text-align: center; margin-bottom: 40px;">
                 <h2>Impact Stories</h2>
             </div>
             <div class="scroll-row fade-in">
@@ -412,34 +508,45 @@
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
 
-        // Mobile Menu Toggle
+        // Mobile Menu Toggle (Smoother)
         const menuBtn = document.querySelector('.menu-btn');
-        const navLinks = document.querySelector('.nav-links');
+        const mobileNav = document.querySelector('.mobile-nav-container');
+        const mobileLinks = document.querySelectorAll('.mobile-links a');
         
         menuBtn.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            if(navLinks.style.display === 'flex') {
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '70px';
-                navLinks.style.left = '0';
-                navLinks.style.width = '100%';
-                navLinks.style.background = 'var(--bg-surface)';
-                navLinks.style.padding = '20px';
-                navLinks.style.borderBottom = '1px solid var(--border)';
-            }
+            mobileNav.classList.toggle('active');
+            // Animate icon rotation
+            const isOpen = mobileNav.classList.contains('active');
+            const menuIcon = menuBtn.querySelector('i');
+            menuIcon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
         });
 
-        // Scroll Animation
+        // Close mobile menu on link click
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                menuBtn.querySelector('i').className = 'fa-solid fa-bars';
+            });
+        });
+
+        // Scroll Animation Logic with Staggering
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    // Stop observing once visible to save performance
+                    observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
